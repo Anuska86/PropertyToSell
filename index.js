@@ -1,3 +1,22 @@
-function getPropertyHtml() {
+import propertyForSaleArr from "./properties/propertyForSaleArr";
+import placeholderPropertyObj from "./properties/placeholderPropertyObj";
 
-document.getElementById('container').innerHTML = getPropertyHtml()
+function getPropertyHtml(properties = [placeholderPropertyObj]) {
+  return properties
+    .map((propertyLocation, priceGBP, roomsM2, comment, image) => {
+      const totalSize = roomsM2.reduce((sum, n) => sum + n, 0);
+      return `<section class="card">
+  <img src="/images/${image}">
+  <div class="card-right">
+    <h2>${propertyLocation}</h2>
+    <h3>£${priceGBP.toLocaleString()}</h3>
+    <p>${comment}</p>
+    <h3>${totalSize} m&sup2;</h3>
+  </div>
+</section>`;
+    })
+    .join("");
+}
+
+document.getElementById("container").innerHTML =
+  getPropertyHtml(propertyForSaleArr);
