@@ -4,7 +4,7 @@ import placeholderPropertyObj from "./properties/placeholderPropertyObj.js";
 function getPropertyHtml(properties = [placeholderPropertyObj]) {
   return properties
     .map(({ propertyLocation, priceGBP, roomsM2, comment, image }) => {
-      const totalSize = roomsM2.reduce((sum, n) => sum + n, 0);
+      const totalSize = roomsM2.reduce((sum, current) => sum + current, 0);
       return `<section class="card">
   <img src="/images/${image}">
   <div class="card-right">
